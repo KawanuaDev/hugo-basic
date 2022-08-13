@@ -1,0 +1,2 @@
+{{ $common := resources.Get "js/common.js" | minify | fingerprint "sha512" }}
+<script src="{{ $common.Permalink }}" integrity="{{ $common.Data.Integrity }}"></script>

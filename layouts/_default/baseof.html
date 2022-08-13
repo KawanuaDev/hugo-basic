@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "headtag" . }}
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    <title>
+        {{ if .IsHome }}
+        {{ .Site.Title }}
+        {{ else }}
+        {{ .Title }} - {{ .Site.Title }}
+        {{ end }}
+    </title>
+</head>
+<body>
+    <header>
+        {{ block "header" . }}{{ end }}
+    </header>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    <main>
+        {{ block "sponsored" . }}{{ end }}
+    </main>
+    <footer>
+        {{ partial "footer" . }}
+    </footer>
+    {{ partial "kembaliatas" . }}
+    {{ partial "scripts" . }}
+</body>
+</html>

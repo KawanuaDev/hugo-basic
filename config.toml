@@ -1,0 +1,45 @@
+baseURL = '/'
+title = ''
+assetDir = "assets"
+timeZone = "Asia/Makassar"
+sectionPagesMenu = "navtop"
+
+[params]
+    orgName = ""
+    languageCode = "id"
+
+[taxonomies]
+  kategori = 'categories'
+  label = 'tags'
+
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+[[related.indices]]
+  name = 'categories'
+  weight = 100
+[[related.indices]]
+  name = 'tags'
+  weight = 100
+
+[sitemap]
+  changefreq = 'weekly'
+  filename = 'sitemap.xml'
+  priority = 0.5
+
+
+# ALGOLIA #
+
+[outputs]
+home = ["HTML", "RSS", "JSON", "Algolia"]
+
+[outputFormats.Algolia]
+baseName = "algolia"
+isPlainText = true
+mediaType = "application/json"
+notAlternative = true
+
+[params.algolia]
+vars = ["title", "summary", "date", "publishdate", "expirydate", "permalink", "images", "author", "performer", "album", "year", "tempo", "bpm", "videos"]
+params = ["tags"]

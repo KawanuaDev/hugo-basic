@@ -1,0 +1,28 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- URL preconnect -->
+<link rel="preconnect" href="https://disqus.com">
+<link rel="preconnect" href="https://c.disquscdn.com">
+<!-- Fallback for preconnect -->
+<link rel="dns-prefetch" href="https://disqus.com">
+<link rel="dns-prefetch" href="https://c.disquscdn.com">
+
+<!-- Stylesheets -->
+{{ $style := resources.Get "styles/global.css" | minify | fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous"> 
+{{ $opsi := (dict "targetPath" "css/main.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+{{ $punya := resources.Get "styles/punyaku.scss" | toCSS $opsi | minify | fingerprint "sha512" }}
+<link rel="stylesheet" href="{{ $punya.Permalink }}" integrity="{{ $punya.Data.Integrity }}" crossorigin="anonymous"> 
+
+<!-- Favicons (recommended 144x144px) -->
+{{ $favicon := resources.Get "img/icon.png" }}
+<link rel="shortcut icon" href="{{ $favicon.Permalink }}" type="{{ $favicon.MediaType.Type }}">
+{{ $appletouch := resources.Get "img/apple-touch-icon.png" }}
+<link rel="apple-touch-icon" href="{{ $appletouch.Permalink }}">
+
+{{ if .IsHome }}
+<meta name="description" content="{{ .Site.Params.description }}">
+{{ else }}
+<meta name="description" content="{{ .Summary | truncate 150 }}">
+{{ end }}
